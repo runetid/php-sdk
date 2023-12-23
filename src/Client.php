@@ -2,6 +2,10 @@
 
 namespace runetid\sdk;
 
+use Psr\Http\Message\ResponseInterface;
+use runetid\sdk\facade\Event;
+use runetid\sdk\facade\User;
+
 class Client
 {
     private $apiKey;
@@ -20,26 +24,37 @@ class Client
         return md5($this->apiKey.$this->time.$this->apiSecret);
     }
 
-    public function request($url, $method): \Psr\Http\Message\ResponseInterface
+    public function request($url, $method, array $payload = []): ResponseInterface
     {
         $client = new \GuzzleHttp\Client(['base_uri' => 'https://tmpapi.runet.id']);
 
-        return $client->request($method, $url, [
+        $params = [
             'headers' => [
-//                'User-Agent' => 'testing/1.0',
-//                'Accept'     => 'application/json',
-//                'X-Foo'      => ['Bar', 'Baz'],
-
-            'Origin' => 'https://runet.id',
+                'Origin' => 'https://runet.id',
 
                 'ApiKey' => $this->apiKey,
                 'Hash' => $this->getHash(),
                 'Time' => $this->time,
             ]
-        ]);
+        ];
+
+        if (false === empty($payload)) {
+            $params['json'] = $payload;
+        }
+
+        return $client->request($method, $url, $params);
     }
 
 
+    public function event(): Event
+    {
+        return new Event($this);
+    }
+
+    public function user(): User
+    {
+        return new User($this);
+    }
 
 
 }

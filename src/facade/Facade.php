@@ -1,10 +1,10 @@
 <?php
 
-namespace runetid\sdk\models;
+namespace runetid\sdk\facade;
 
 use runetid\sdk\Client;
 
-abstract class Model
+abstract class Facade
 {
     protected Client $client;
 
