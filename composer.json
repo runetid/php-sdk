@@ -1,0 +1,23 @@
+{
+    "name": "runetid/php-sdk",
+    "description": "runet.id php sdk",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "runetid\\sdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "fgorsky",
+            "email": "fedor@support-pc.org"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "=>7.4",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.8"
+    }
+}
