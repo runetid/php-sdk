@@ -8,7 +8,7 @@ class Event extends Facade
 {
     public function getByAlias(string $alias): ?\runetid\sdk\models\Event
     {
-        $response = $this->client->request('/event/'.$alias, 'GET');
+        $response = $this->client->request('/event/byAlias/'.$alias, 'GET');
 
         if ($response->getStatusCode() !== 200) {
             return null;

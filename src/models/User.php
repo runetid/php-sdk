@@ -10,7 +10,7 @@ class User implements ModelInterface
     public $last_name;
     public $father_name;
 
-    public function load(array $data): User
+    public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
             if (property_exists($this, $attr)) {

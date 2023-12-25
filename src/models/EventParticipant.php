@@ -12,7 +12,7 @@ class EventParticipant implements ModelInterface
 
     public $attributes = [];
 
-    public function load(array $data): EventParticipant
+    public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
             if (property_exists($this, $attr)) {

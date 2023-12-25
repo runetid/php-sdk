@@ -16,7 +16,7 @@ class Event implements ModelInterface
     public $site_url;
     public $default_role_id;
 
-    public function load(array $data): Event
+    public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
             if (property_exists($this, $attr)) {
