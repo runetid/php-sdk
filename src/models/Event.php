@@ -16,6 +16,8 @@ class Event implements ModelInterface
     public $site_url;
     public $default_role_id;
 
+    public $visible;
+
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
