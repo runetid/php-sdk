@@ -4,6 +4,7 @@ namespace runetid\sdk;
 
 use Psr\Http\Message\ResponseInterface;
 use runetid\sdk\facade\Event;
+use runetid\sdk\facade\Section;
 use runetid\sdk\facade\User;
 
 class Client
@@ -45,7 +46,6 @@ class Client
         return $client->request($method, $url, $params);
     }
 
-
     public function event(): Event
     {
         return new Event($this);
@@ -56,5 +56,8 @@ class Client
         return new User($this);
     }
 
-
+    public function section(): Section
+    {
+        return new Section($this);
+    }
 }
