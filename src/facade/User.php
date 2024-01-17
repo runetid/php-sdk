@@ -81,7 +81,6 @@ class User extends Facade
         return $decode['token'];
     }
 
-
     public function byToken(string $token): ?\runetid\sdk\models\User
     {
         $response = $this->client->request('/user/byToken/'.$token, 'GET');
@@ -90,7 +89,7 @@ class User extends Facade
 
         $user = new \runetid\sdk\models\User();
 
-        if ($user->runet_id === null) {
+        if (false === isset($decode['runet_id'])) {
             return null;
         }
 
