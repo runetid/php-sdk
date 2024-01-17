@@ -4,11 +4,13 @@ namespace runetid\sdk\models;
 
 class User implements ModelInterface
 {
-
     public $id;
     public $first_name;
     public $last_name;
     public $father_name;
+    public $runet_id;
+    public $photo;
+    public $birthay;
 
     public function load(\ArrayAccess|array $data): ModelInterface
     {
