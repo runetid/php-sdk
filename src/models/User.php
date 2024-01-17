@@ -11,6 +11,7 @@ class User implements ModelInterface
     public $runet_id;
     public $photo;
     public $birthay;
+    public $email;
 
     public function load(\ArrayAccess|array $data): ModelInterface
     {
