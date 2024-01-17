@@ -9,20 +9,16 @@ use runetid\sdk\facade\User;
 
 class Client
 {
+    public $bearer;
     private $apiKey;
     private $apiSecret;
-
     private $time;
+
     public function __construct($apikey, $apiSecret)
     {
         $this->apiKey = $apikey;
         $this->apiSecret = $apiSecret;
         $this->time = time();
-    }
-
-    private function getHash()
-    {
-        return md5($this->apiKey.$this->time.$this->apiSecret);
     }
 
     public function request($url, $method, array $payload = []): ResponseInterface
@@ -39,11 +35,20 @@ class Client
             ]
         ];
 
+        if ($this->bearer) {
+            $params['headers']['Authorization'] = 'Bearer ' . $this->bearer;
+        }
+
         if (false === empty($payload)) {
             $params['json'] = $payload;
         }
 
         return $client->request($method, $url, $params);
+    }
+
+    private function getHash()
+    {
+        return md5($this->apiKey . $this->time . $this->apiSecret);
     }
 
     public function event(): Event
