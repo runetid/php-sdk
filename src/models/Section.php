@@ -10,13 +10,15 @@ class Section implements ModelInterface
     public $start_time;
     public $end_time;
 
-    public $hall;
+    public $halls;
 
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
-            if ($attr === 'hall') {
-                $this->hall = (new SectionHall())->load($value);
+            if ($attr === 'halls' && !empty($value)) {
+                foreach ($value as $hall) {
+                    $this->halls[] = (new SectionHall())->load($hall);
+                }
             } elseif (property_exists($this, $attr)) {
                 $this->{$attr} = $value;
             }

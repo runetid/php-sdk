@@ -7,7 +7,7 @@ class Section extends Facade
     public function list(): ?array
     {
         $params = [
-            'limit' => 1,
+            'limit' => 100,
             'offset' => 0,
             'pagination' => [
                 'page' => 1,
