@@ -14,8 +14,8 @@ class Section extends Facade
                 'perPage' => 10
             ],
             'sort' => [
-                'field' => 'id',
-                'order' => 'DESC'
+                'field' => 'start_time',
+                'order' => 'ASC'
             ],
         ];
 
