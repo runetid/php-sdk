@@ -9,7 +9,7 @@ class Section implements ModelInterface
     public $title;
     public $start_time;
     public $end_time;
-
+    public $info;
     public $halls;
 
     public function load(\ArrayAccess|array $data): ModelInterface
