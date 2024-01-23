@@ -60,9 +60,4 @@ class Client
     {
         return new User($this);
     }
-
-    public function section(): Section
-    {
-        return new Section($this);
-    }
 }
