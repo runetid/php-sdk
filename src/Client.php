@@ -4,6 +4,7 @@ namespace runetid\sdk;
 
 use Psr\Http\Message\ResponseInterface;
 use runetid\sdk\facade\Event;
+use runetid\sdk\facade\Order;
 use runetid\sdk\facade\Section;
 use runetid\sdk\facade\User;
 
@@ -59,5 +60,10 @@ class Client
     public function user(): User
     {
         return new User($this);
+    }
+
+    public function order(): Order
+    {
+        return new Order($this);
     }
 }
