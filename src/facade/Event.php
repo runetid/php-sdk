@@ -26,14 +26,15 @@ class Event extends Facade
         return $model;
     }
 
-    public function register(int $eventId, int $userId, int $roleId, array $attributes = []): ?EventParticipant
+    public function register(int $userId, int $roleId, array $attributes = []): ?EventParticipant
     {
-        $response = $this->client->request('/event/register', 'POST', [
-            'event_id' => $eventId,
+        $params = [
             'user_id' => $userId,
             'role_id' => $roleId,
             'attributes' => $attributes,
-        ]);
+        ];
+
+        $response = $this->client->request('/event/register', 'POST', $params);
         if ($response->getStatusCode() !== 200) {
             return null;
         }
