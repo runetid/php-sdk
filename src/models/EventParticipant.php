@@ -5,6 +5,7 @@ namespace runetid\sdk\models;
 class EventParticipant implements ModelInterface
 {
 
+    public $id;
     public $user_id;
     public $event_id;
 
