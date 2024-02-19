@@ -13,10 +13,18 @@ class EventParticipant implements ModelInterface
 
     public $attributes = [];
 
+
+    public $user;
+    public $event;
+
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
-            if (property_exists($this, $attr)) {
+            if ($attr === 'user' && !empty($value)) {
+                $this->user = (new User())->load($value);
+            }elseif ($attr === 'event' && !empty($value)) {
+                $this->user = (new Event())->load($value);
+            } elseif (property_exists($this, $attr)) {
                 $this->{$attr} = $value;
             }
         }

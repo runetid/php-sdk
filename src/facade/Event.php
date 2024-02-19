@@ -163,7 +163,7 @@ class Event extends Facade
 
         foreach ($decode['data'] as $item) {
 
-            $model = new \runetid\sdk\models\User();
+            $model = new \runetid\sdk\models\EventParticipant();
             $model->load($item);
 
             $result[] = $model;
