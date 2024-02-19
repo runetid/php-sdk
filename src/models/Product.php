@@ -15,7 +15,7 @@ class Product implements ModelInterface
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
-            if ($attr === '$price' && !empty($value)) {
+            if ($attr === 'price' && !empty($value)) {
                 foreach ($value as $price) {
                     $this->$price[] = (new ProductPrice())->load($price);
                 }
