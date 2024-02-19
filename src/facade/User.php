@@ -58,6 +58,10 @@ class User extends Facade
 
         $decode = json_decode($response->getBody(), true);
 
+        if (isset($decode['id'])) {
+            return $user->load($decode);
+        }
+
         if (false === isset($decode['data'])) {
             return null;
         }
