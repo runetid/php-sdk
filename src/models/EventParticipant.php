@@ -14,8 +14,12 @@ class EventParticipant implements ModelInterface
     public $attributes = [];
 
 
+    /** @var User */
     public $user;
+    /** @var Event */
     public $event;
+    /** @var EventRole */
+    public $role;
 
     public function load(\ArrayAccess|array $data): ModelInterface
     {
@@ -24,6 +28,8 @@ class EventParticipant implements ModelInterface
                 $this->user = (new User())->load($value);
             }elseif ($attr === 'event' && !empty($value)) {
                 $this->user = (new Event())->load($value);
+            }elseif ($attr === 'role' && !empty($value)) {
+                $this->role = (new EventRole())->load($value);
             } elseif (property_exists($this, $attr)) {
                 $this->{$attr} = $value;
             }
