@@ -21,6 +21,8 @@ class EventParticipant implements ModelInterface
     /** @var EventRole */
     public $role;
 
+    public $created_at;
+
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
