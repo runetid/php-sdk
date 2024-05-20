@@ -4,18 +4,28 @@ namespace runetid\sdk\models;
 
 class Order implements ModelInterface
 {
+    /** @var int  */
     public $id;
+    /** @var string  */
     public $number;
+    /** @var bool */
     public $juridical;
+    /** @var int  */
     public $event_id;
+    /** @var bool  */
     public $paid;
+    /** @var string|null */
     public $paid_time;
+    /** @var float  */
     public $total;
 
-
+    /** @var Event */
     public $event;
+    /** @var User */
     public $payer;
+    /** @var OrderItem[]  */
     public $items;
+    /** @var OrderJuridical  */
     public $order_juridical;
 
 

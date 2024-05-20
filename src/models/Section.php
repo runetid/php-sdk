@@ -4,12 +4,19 @@ namespace runetid\sdk\models;
 
 class Section implements ModelInterface
 {
+    /** @var int  */
     public $id;
+    /** @var int */
     public $event_id;
+    /** @var string */
     public $title;
+    /** @var string */
     public $start_time;
+    /** @var string */
     public $end_time;
+    /** @var string */
     public $info;
+    /** @var SectionHall[]  */
     public $halls;
 
     public function load(\ArrayAccess|array $data): ModelInterface

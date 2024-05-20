@@ -4,13 +4,15 @@ namespace runetid\sdk\models;
 
 class EventParticipant implements ModelInterface
 {
-
+    /** @var int  */
     public $id;
+    /** @var int  */
     public $user_id;
+    /** @var int  */
     public $event_id;
-
+    /** @var int  */
     public $role_id;
-
+    /** @var array  */
     public $attributes = [];
 
 
@@ -20,7 +22,7 @@ class EventParticipant implements ModelInterface
     public $event;
     /** @var EventRole */
     public $role;
-
+    /** @var string */
     public $created_at;
 
     public function load(\ArrayAccess|array $data): ModelInterface

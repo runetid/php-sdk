@@ -4,8 +4,11 @@ namespace runetid\sdk\models;
 
 class EventRole implements ModelInterface
 {
+    /** @var string  */
     public $title;
+    /** @var int */
     public $id;
+    /** @var string  */
     public $code;
 
     public function load(\ArrayAccess|array $data): ModelInterface

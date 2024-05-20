@@ -4,18 +4,25 @@ namespace runetid\sdk\models;
 
 class Event implements ModelInterface
 {
+    /** @var int  */
     public $id;
+    /** @var string  */
     public $id_name;
+    /** @var string  */
     public $title;
+    /** @var string  */
     public $info;
+    /** @var string  */
     public $full_info;
-
+    /** @var string  */
     public $start_time;
+    /** @var string  */
     public $end_time;
-
+    /** @var string  */
     public $site_url;
+    /** @var int  */
     public $default_role_id;
-
+    /** @var bool */
     public $visible;
 
     public function load(\ArrayAccess|array $data): ModelInterface

@@ -4,12 +4,21 @@ namespace runetid\sdk\models;
 
 class OrderItem implements ModelInterface
 {
+    /** @var int  */
+    public $id;
+    /** @var int  */
     public $owner_id;
+    /** @var User  */
     public $owner;
+    /** @var int  */
     public $payer_id;
+    /** @var User  */
     public $payer;
+    /** @var int  */
     public $product_id;
+    /** @var Product  */
     public $product;
+    /** @var array  */
     public $attributes;
 
     public function load(\ArrayAccess|array $data): ModelInterface

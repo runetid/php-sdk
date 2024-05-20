@@ -4,8 +4,11 @@ namespace runetid\sdk\models;
 
 class ProductPrice implements ModelInterface
 {
+    /** @var string */
     public $start_time;
+    /** @var string */
     public $end_time;
+    /** @var numeric */
     public $cost;
 
     public function load(\ArrayAccess|array $data): ModelInterface

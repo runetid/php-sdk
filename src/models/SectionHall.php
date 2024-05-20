@@ -6,7 +6,9 @@ use runetid\sdk\models\ModelInterface;
 
 class SectionHall implements ModelInterface
 {
+    /** @var int  */
     public $id;
+    /** @var string */
     public $title;
 
     public function load(\ArrayAccess|array $data): ModelInterface

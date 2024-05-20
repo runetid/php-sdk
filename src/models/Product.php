@@ -4,12 +4,17 @@ namespace runetid\sdk\models;
 
 class Product implements ModelInterface
 {
+    /** @var int */
     public $id;
+    /** @var string  */
     public $status;
+    /** @var string  */
     public $title;
+    /** @var string */
     public $description;
+    /** @var bool */
     public $enable_coupon;
-
+    /** @var ProductPrice[]  */
     public $price;
 
     public function load(\ArrayAccess|array $data): ModelInterface
