@@ -22,6 +22,11 @@ class Order extends Facade
         return $item->load($decode['data']);
     }
 
+    /**
+     * @deprecated Изменен ендпоинт
+     * @param $ownerId
+     * @return array
+     */
     public function getOrderItems($ownerId): array
     {
         $response = $this->client->request('/pay/order/orderItems/' . $ownerId, 'GET');

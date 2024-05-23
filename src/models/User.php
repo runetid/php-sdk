@@ -21,6 +21,9 @@ class User implements ModelInterface
     /** @var string */
     public $email;
 
+    /** @var string|null  */
+    public $password;
+
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
