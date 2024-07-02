@@ -16,6 +16,8 @@ class Product implements ModelInterface
     public $enable_coupon;
     /** @var ProductPrice[]  */
     public $price;
+    /** @var string|array */
+    public $attributes;
 
     public function load(\ArrayAccess|array $data): ModelInterface
     {

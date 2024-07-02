@@ -5,6 +5,7 @@ namespace runetid\sdk;
 use Psr\Http\Message\ResponseInterface;
 use runetid\sdk\facade\Event;
 use runetid\sdk\facade\Order;
+use runetid\sdk\facade\Product;
 use runetid\sdk\facade\Section;
 use runetid\sdk\facade\User;
 
@@ -24,7 +25,7 @@ class Client
 
     public function request($url, $method, array $payload = []): ResponseInterface
     {
-        $client = new \GuzzleHttp\Client(['base_uri' => 'https://tmpapi.runet.id']);
+        $client = new \GuzzleHttp\Client(['base_uri' => 'https://api.runet.id']);
 
         $params = [
             'headers' => [
@@ -65,5 +66,10 @@ class Client
     public function order(): Order
     {
         return new Order($this);
+    }
+
+    public function product(): Product
+    {
+        return new Product($this);
     }
 }
