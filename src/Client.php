@@ -16,11 +16,11 @@ class Client
     private $apiSecret;
     private $time;
 
-    public function __construct($apikey, $apiSecret)
+    public function __construct($apikey, $apiSecret, $time = null)
     {
         $this->apiKey = $apikey;
         $this->apiSecret = $apiSecret;
-        $this->time = time();
+        $this->time = $time ?: time();
     }
 
     public function request($url, $method, array $payload = []): ResponseInterface
@@ -48,7 +48,7 @@ class Client
         return $client->request($method, $url, $params);
     }
 
-    private function getHash()
+    private function getHash(): string
     {
         return md5($this->apiKey . $this->time . $this->apiSecret);
     }
