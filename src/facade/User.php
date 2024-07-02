@@ -69,35 +69,18 @@ class User extends Facade
         return $user->load($decode['data']);
     }
 
-    public function getToken(string $login, string $password): ?string
-    {
-        $response = $this->client->request('/user/login', 'POST', [
-            'login' => $login,
-            'password' => $password
-        ]);
-
-        $decode = json_decode($response->getBody(), true);
-
-        if (false === isset($decode['token'])) {
-            return null;
-        }
-
-        return $decode['token'];
-    }
-
     public function getByToken(string $token): ?\runetid\sdk\models\User
     {
         $response = $this->client->request('/user/byToken/'.$token, 'GET');
 
         $decode = json_decode($response->getBody(), true);
-
         $user = new \runetid\sdk\models\User();
 
-        if (false === isset($decode['runet_id'])) {
+        if (false === isset($decode['data']['runet_id'])) {
             return null;
         }
 
-        return $user->load($decode);
+        return $user->load($decode['data']);
     }
 
     public function getById(int $id): ?\runetid\sdk\models\User
@@ -108,10 +91,10 @@ class User extends Facade
 
         $user = new \runetid\sdk\models\User();
 
-        if (false === isset($decode['runet_id'])) {
+        if (false === isset($decode['data']['runet_id'])) {
             return null;
         }
 
-        return $user->load($decode);
+        return $user->load($decode['data']);
     }
 }
