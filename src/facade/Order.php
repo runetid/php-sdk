@@ -6,7 +6,7 @@ use runetid\sdk\models\OrderItem;
 
 class Order extends Facade
 {
-    public function addOrderItem(OrderItem $item): ?\runetid\sdk\models\OrderItem
+    public function addOrderItem(OrderItem $item): ?OrderItem
     {
         $response = $this->client->request('/pay/order/orderItem', 'POST', $item->toArray());
         if ($response->getStatusCode() !== 200) {
@@ -44,7 +44,7 @@ class Order extends Facade
 
         foreach ($decode['data'] as $item) {
 
-            $model = new \runetid\sdk\models\OrderItem();
+            $model = new OrderItem();
             $model->load($item);
 
             $result[] = $model;

@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnused */
 
 namespace runetid\sdk\models;
 
@@ -19,7 +20,7 @@ class Product implements ModelInterface
     /** @var string|array */
     public $attributes;
 
-    public function load(\ArrayAccess|array $data): ModelInterface
+    public function load(\ArrayAccess|array $data): self
     {
         foreach ($data as $attr => $value) {
             if ($attr === 'price' && !empty($value)) {

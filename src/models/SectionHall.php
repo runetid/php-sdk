@@ -1,8 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
 
 namespace runetid\sdk\models;
-
-use runetid\sdk\models\ModelInterface;
 
 class SectionHall implements ModelInterface
 {
@@ -11,7 +10,7 @@ class SectionHall implements ModelInterface
     /** @var string */
     public $title;
 
-    public function load(\ArrayAccess|array $data): ModelInterface
+    public function load(\ArrayAccess|array $data): self
     {
         foreach ($data as $attr => $value) {
             if (property_exists($this, $attr)) {

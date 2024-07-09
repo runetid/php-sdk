@@ -2,11 +2,14 @@
 
 namespace runetid\sdk\facade;
 
+use runetid\sdk\models\Event as EventModel;
 use runetid\sdk\models\EventParticipant;
+use runetid\sdk\models\Product as ProductModel;
+use runetid\sdk\models\Section;
 
 class Event extends Facade
 {
-    public function getByAlias(string $alias): ?\runetid\sdk\models\Event
+    public function getByAlias(string $alias): ?EventModel
     {
         $response = $this->client->request('/event/byAlias/'.$alias, 'GET');
 
@@ -20,13 +23,13 @@ class Event extends Facade
             return null;
         }
 
-        $model = new \runetid\sdk\models\Event();
+        $model = new EventModel();
         $model->load($decode['data']);
 
         return $model;
     }
 
-    public function getById(int $id): ?\runetid\sdk\models\Event
+    public function getById(int $id): ?EventModel
     {
         $response = $this->client->request('/event/'.$id, 'GET');
 
@@ -40,7 +43,7 @@ class Event extends Facade
             return null;
         }
 
-        $model = new \runetid\sdk\models\Event();
+        $model = new EventModel();
         $model->load($decode['data']);
 
         return $model;
@@ -104,7 +107,7 @@ class Event extends Facade
 
         foreach ($decode['data'] as $item) {
 
-            $model = new \runetid\sdk\models\Section();
+            $model = new Section();
             $model->load($item);
 
             $result[] = $model;
@@ -142,7 +145,7 @@ class Event extends Facade
 
         foreach ($decode['data'] as $item) {
 
-            $model = new \runetid\sdk\models\Product();
+            $model = new ProductModel();
             $model->load($item);
 
             $result[] = $model;
@@ -183,7 +186,7 @@ class Event extends Facade
 
         foreach ($decode['data'] as $item) {
 
-            $model = new \runetid\sdk\models\EventParticipant();
+            $model = new EventParticipant();
             $model->load($item);
 
             $result[] = $model;

@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnused */
 
 namespace runetid\sdk\models;
 
@@ -24,7 +25,7 @@ class User implements ModelInterface
     /** @var string|null  */
     public $password;
 
-    public function load(\ArrayAccess|array $data): ModelInterface
+    public function load(\ArrayAccess|array $data): self
     {
         foreach ($data as $attr => $value) {
             if (property_exists($this, $attr)) {

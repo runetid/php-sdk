@@ -2,6 +2,8 @@
 
 namespace runetid\sdk\facade;
 
+use runetid\sdk\models\User as UserModel;
+
 class User extends Facade
 {
     public function search(string $terms): ?array
@@ -40,7 +42,7 @@ class User extends Facade
 
         foreach ($decode['data'] as $item) {
 
-            $model = new \runetid\sdk\models\User();
+            $model = new UserModel();
             $model->load($item);
 
             $result[] = $model;
@@ -49,7 +51,7 @@ class User extends Facade
         return $result;
     }
 
-    public function create(\runetid\sdk\models\User $user): ?\runetid\sdk\models\User
+    public function create(UserModel $user): ?UserModel
     {
         $response = $this->client->request('/user/register', 'POST', $user->toArray());
         if ($response->getStatusCode() !== 200) {
@@ -69,12 +71,12 @@ class User extends Facade
         return $user->load($decode['data']);
     }
 
-    public function getByToken(string $token): ?\runetid\sdk\models\User
+    public function getByToken(string $token): ?UserModel
     {
         $response = $this->client->request('/user/byToken/'.$token, 'GET');
 
         $decode = json_decode($response->getBody(), true);
-        $user = new \runetid\sdk\models\User();
+        $user = new UserModel();
 
         if (false === isset($decode['data']['runet_id'])) {
             return null;
@@ -83,13 +85,13 @@ class User extends Facade
         return $user->load($decode['data']);
     }
 
-    public function getById(int $id): ?\runetid\sdk\models\User
+    public function getById(int $id): ?UserModel
     {
         $response = $this->client->request('/user/'.$id, 'GET');
 
         $decode = json_decode($response->getBody(), true);
 
-        $user = new \runetid\sdk\models\User();
+        $user = new UserModel();
 
         if (false === isset($decode['data']['runet_id'])) {
             return null;
