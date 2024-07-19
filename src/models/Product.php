@@ -17,8 +17,16 @@ class Product implements ModelInterface
     public $enable_coupon;
     /** @var ProductPrice[]  */
     public $price;
+    /** @var ProductPrice  */
+    public $current_price;
     /** @var string|array */
     public $attributes;
+    /** @var int  */
+    public $event_id;
+    /** @var string */
+    public $manager;
+    /** @var int */
+    public $valid_period;
 
     public function load(\ArrayAccess|array $data): self
     {
@@ -27,6 +35,8 @@ class Product implements ModelInterface
                 foreach ($value as $price) {
                     $this->$price[] = (new ProductPrice())->load($price);
                 }
+            } elseif ($attr === 'current_price' && !empty($value)) {
+                $this->current_price = (new ProductPrice())->load($value);
             } elseif (property_exists($this, $attr)) {
                 $this->{$attr} = $value;
             }
