@@ -130,6 +130,12 @@ $client->event()->searchParticipant('test@example.com')
 $client->product()->getById(123)
 ```
 
+### Поиск товаров
+```php
+$filter = ['event_id' => 123];
+$products = $client->product()->search($filter);
+```
+
 ## Заказы
 
 ### Добавить позицию в заказ
