@@ -5,6 +5,8 @@ namespace runetid\sdk\models;
 
 class ProductPrice implements ModelInterface
 {
+    /** @var int */
+    public $id;
     /** @var string */
     public $start_time;
     /** @var string */

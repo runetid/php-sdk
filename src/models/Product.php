@@ -16,7 +16,7 @@ class Product implements ModelInterface
     /** @var bool */
     public $enable_coupon;
     /** @var ProductPrice[]  */
-    public $price;
+    public $price = [];
     /** @var ProductPrice  */
     public $current_price;
     /** @var string|array */
