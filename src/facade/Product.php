@@ -14,7 +14,7 @@ class Product extends Facade
 
         $product = new ProductModel();
 
-        if (false === isset($decode['data']['id'])) {
+        if (false === isset($decode['data'])) {
             return null;
         }
 
