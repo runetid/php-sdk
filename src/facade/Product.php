@@ -12,13 +12,13 @@ class Product extends Facade
 
         $decode = json_decode($response->getBody(), true);
 
-        $user = new ProductModel();
+        $product = new ProductModel();
 
-        if (false === isset($decode['runet_id'])) {
+        if (false === isset($decode['id'])) {
             return null;
         }
 
-        return $user->load($decode);
+        return $product->load($decode);
     }
 
     /**
