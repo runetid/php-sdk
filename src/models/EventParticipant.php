@@ -32,7 +32,7 @@ class EventParticipant implements ModelInterface
             if ($attr === 'user' && !empty($value)) {
                 $this->user = (new User())->load($value);
             }elseif ($attr === 'event' && !empty($value)) {
-                $this->user = (new Event())->load($value);
+                $this->event = (new Event())->load($value);
             }elseif ($attr === 'role' && !empty($value)) {
                 $this->role = (new EventRole())->load($value);
             } elseif (property_exists($this, $attr)) {
