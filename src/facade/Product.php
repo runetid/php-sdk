@@ -18,7 +18,7 @@ class Product extends Facade
             return null;
         }
 
-        return $product->load($decode);
+        return $product->load($decode['data']);
     }
 
     /**
