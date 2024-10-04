@@ -17,6 +17,7 @@ class Section implements ModelInterface
     public $end_time;
     /** @var string */
     public $info;
+    public $full_info;
     /** @var SectionHall[]  */
     public $halls;
 

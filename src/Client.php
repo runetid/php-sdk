@@ -72,4 +72,9 @@ class Client
     {
         return new Product($this);
     }
+
+    public function section(): Section
+    {
+        return new Section($this);
+    }
 }
