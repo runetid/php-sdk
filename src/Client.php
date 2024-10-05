@@ -7,6 +7,7 @@ use runetid\sdk\facade\Event;
 use runetid\sdk\facade\Order;
 use runetid\sdk\facade\Product;
 use runetid\sdk\facade\Section;
+use runetid\sdk\facade\SectionHall;
 use runetid\sdk\facade\User;
 
 class Client
@@ -76,5 +77,10 @@ class Client
     public function section(): Section
     {
         return new Section($this);
+    }
+
+    public function hall(): SectionHall
+    {
+        return new SectionHall($this);
     }
 }
