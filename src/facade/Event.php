@@ -74,7 +74,7 @@ class Event extends Facade
         return $model;
     }
 
-    public function program(): ?array
+    public function program($filter = []): ?array
     {
         $params = [
             'limit' => 100,
@@ -87,6 +87,7 @@ class Event extends Facade
                 'field' => 'start_time',
                 'order' => 'ASC'
             ],
+            'filter' => $filter,
         ];
 
         $url ='/program/section/list?'.http_build_query($params);

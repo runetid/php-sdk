@@ -4,14 +4,18 @@ namespace runetid\sdk\facade;
 
 class SectionHall extends Facade
 {
-    public function list(int $eventId): ?array
+    public function list(int $eventId, int $limit = 10, int $offset = 0): ?array
     {
         $params = [
-            'limit' => 1,
-            'offset' => 0,
+            'limit' => $limit,
+            'offset' => $offset,
             'pagination' => [
                 'page' => 1,
-                'perPage' => 1
+                'perPage' => $limit
+            ],
+            'sort' => [
+                'field' => 'id',
+                'order' => 'DESC'
             ],
             'filter' => [
                 'event_id' => $eventId,
