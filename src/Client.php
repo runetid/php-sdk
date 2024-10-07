@@ -17,16 +17,19 @@ class Client
     private $apiSecret;
     private $time;
 
-    public function __construct($apikey, $apiSecret, $time = null)
+    private bool $ssl = true;
+
+    public function __construct(string $apikey, string $apiSecret, int $time = null, bool $ssl = true)
     {
         $this->apiKey = $apikey;
         $this->apiSecret = $apiSecret;
         $this->time = $time ?: time();
+        $this->ssl = $ssl;
     }
 
     public function request($url, $method, array $payload = []): ResponseInterface
     {
-        $client = new \GuzzleHttp\Client(['base_uri' => 'https://api.runet.id']);
+        $client = new \GuzzleHttp\Client(['base_uri' => 'https://api.runet.id', 'verify' => $this->ssl]);
 
         $params = [
             'headers' => [
