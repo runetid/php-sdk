@@ -5,23 +5,23 @@ namespace runetid\sdk\models;
 
 class Event implements ModelInterface
 {
-    /** @var int  */
+    /** @var int */
     public $id;
-    /** @var string  */
+    /** @var string */
     public $id_name;
-    /** @var string  */
+    /** @var string */
     public $title;
-    /** @var string  */
+    /** @var string */
     public $info;
-    /** @var string  */
+    /** @var string */
     public $full_info;
-    /** @var string  */
+    /** @var \DateTime */
     public $start_time;
-    /** @var string  */
+    /** @var \DateTime */
     public $end_time;
-    /** @var string  */
+    /** @var string */
     public $site_url;
-    /** @var int  */
+    /** @var int */
     public $default_role_id;
     /** @var bool */
     public $visible;
@@ -34,10 +34,10 @@ class Event implements ModelInterface
             }
         }
 
-        if ($this->start_time) {
+        if ($this->start_time && is_string($this->start_time)) {
             $this->start_time = new \DateTime($this->start_time);
         }
-        if ($this->end_time) {
+        if ($this->end_time && is_string($this->end_time)) {
             $this->end_time = new \DateTime($this->end_time);
         }
 
@@ -46,6 +46,6 @@ class Event implements ModelInterface
 
     public function toArray(): array
     {
-        return (array) $this;
+        return (array)$this;
     }
 }

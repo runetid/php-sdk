@@ -11,9 +11,9 @@ class Section implements ModelInterface
     public $event_id;
     /** @var string */
     public $title;
-    /** @var string */
+    /** @var \DateTime */
     public $start_time;
-    /** @var string */
+    /** @var \DateTime */
     public $end_time;
     /** @var string */
     public $info;
@@ -31,6 +31,13 @@ class Section implements ModelInterface
             } elseif (property_exists($this, $attr)) {
                 $this->{$attr} = $value;
             }
+        }
+
+        if ($this->start_time && is_string($this->start_time)) {
+            $this->start_time = new \DateTime($this->start_time);
+        }
+        if ($this->end_time && is_string($this->end_time)) {
+            $this->end_time = new \DateTime($this->end_time);
         }
 
         return $this;
