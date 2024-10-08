@@ -19,14 +19,20 @@ class Section implements ModelInterface
     public $info;
     public $full_info;
     /** @var SectionHall[]  */
-    public $halls;
+    public $places;
+    /** @var EventParticipant[] */
+    public $participants;
 
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
-            if ($attr === 'halls' && !empty($value)) {
+            if ($attr === 'places' && !empty($value)) {
                 foreach ($value as $hall) {
-                    $this->halls[] = (new SectionHall())->load($hall);
+                    $this->places[] = (new SectionHall())->load($hall);
+                }
+            } elseif ($attr === 'participants' && !empty($value)) {
+                foreach ($value as $participant) {
+                    $this->participants[] = (new EventParticipant())->load($participant);
                 }
             } elseif (property_exists($this, $attr)) {
                 $this->{$attr} = $value;
@@ -45,6 +51,10 @@ class Section implements ModelInterface
 
     public function toArray(): array
     {
-        return (array) $this;
+        $arr = (array) $this;
+        $arr['start_time'] = $this->start_time->format(\DateTime::ATOM);
+        $arr['end_time'] = $this->end_time->format(\DateTime::ATOM);
+
+        return $arr;
     }
 }
