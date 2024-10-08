@@ -3,7 +3,7 @@
 
 namespace runetid\sdk\models;
 
-class EventParticipant implements ModelInterface
+class EventParticipant implements ModelInterface, \JsonSerializable
 {
     /** @var int  */
     public $id;
@@ -26,6 +26,10 @@ class EventParticipant implements ModelInterface
     /** @var string */
     public $created_at;
 
+
+    public $runet_id;
+    public $role_title;
+
     public function load(\ArrayAccess|array $data): ModelInterface
     {
         foreach ($data as $attr => $value) {
@@ -45,6 +49,23 @@ class EventParticipant implements ModelInterface
 
     public function toArray(): array
     {
-        return (array) $this;
+        $arr = (array) $this;
+        $arr['user'] = $this->user?->toArray();
+        $arr['event'] = $this->event?->toArray();
+        $arr['role'] = $this->role?->toArray();
+        return $arr;
+    }
+
+    public function jsonSerialize():mixed
+    {
+        $return = [];
+
+        foreach ($this->toArray() as $key => $value) {
+            if (false === empty($this->$key)) {
+                $return[$key] = $value;
+            }
+        }
+
+        return $return;
     }
 }
