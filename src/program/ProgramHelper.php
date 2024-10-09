@@ -50,6 +50,9 @@ class ProgramHelper
     {
         foreach ($this->sections as $section) {
             if ($section->start_time == $start_time) {
+                if ($section->places == null) {
+                    return $section;
+                }
                 foreach ($section->places as $hall) {
                     if ($hall->id == $hall_id) {
                         return $section;
