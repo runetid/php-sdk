@@ -195,4 +195,27 @@ class Event extends Facade
 
         return $result;
     }
+
+    public function changeRole($participantId, $roleId): ?EventParticipant
+    {
+        $params = [
+            'role_id' => $roleId,
+        ];
+        $response = $this->client->request('/event/participant/'.$participantId, 'PUT', $params);
+
+        if ($response->getStatusCode() !== 200) {
+            return null;
+        }
+
+        $decode = json_decode($response->getBody(), true);
+
+        if (false === isset($decode['data'])) {
+            return null;
+        }
+
+        $model = new EventParticipant();
+        $model->load($decode['data']);
+
+        return $model;
+    }
 }
