@@ -38,7 +38,7 @@ class Order implements ModelInterface
             } elseif ($attr === 'payer' && !empty($value)) {
                 $this->payer = (new User())->load($value);
             } elseif ($attr === 'order_juridical' && !empty($value)) {
-                $this->payer = (new OrderJuridical())->load($value);
+                $this->order_juridical = (new OrderJuridical())->load($value);
             } elseif ($attr === 'items' && !empty($items)) {
                 foreach ($items as $item) {
                     $this->items[] = (new OrderItem())->load($item);
