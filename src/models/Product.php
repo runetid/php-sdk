@@ -33,7 +33,7 @@ class Product implements ModelInterface
         foreach ($data as $attr => $value) {
             if ($attr === 'price' && !empty($value)) {
                 foreach ($value as $price) {
-                    $this->$price[] = (new ProductPrice())->load($price);
+                    $this->price[] = (new ProductPrice())->load($price);
                 }
             } elseif ($attr === 'current_price' && !empty($value)) {
                 $this->current_price = (new ProductPrice())->load($value);
