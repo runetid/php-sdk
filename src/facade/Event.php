@@ -195,7 +195,7 @@ class Event extends Facade
         return $model;
     }
 
-    public function getParticipantByRunetId(int $runetId): ?array
+    public function getParticipantByRunetId(int $runetId): ?EventParticipant
     {
         $params = [
             'limit' => 1,
