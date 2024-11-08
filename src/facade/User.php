@@ -85,9 +85,29 @@ class User extends Facade
         return $user->load($decode['data']);
     }
 
+    /**
+     * Admin role only
+     * @param int $id
+     * @return UserModel|null
+     */
     public function getById(int $id): ?UserModel
     {
         $response = $this->client->request('/user/'.$id, 'GET');
+
+        $decode = json_decode($response->getBody(), true);
+
+        $user = new UserModel();
+
+        if (false === isset($decode['data']['runet_id'])) {
+            return null;
+        }
+
+        return $user->load($decode['data']);
+    }
+
+    public function getByRunetId(int $id): ?UserModel
+    {
+        $response = $this->client->request('/user/byRunetId/'.$id, 'GET');
 
         $decode = json_decode($response->getBody(), true);
 
