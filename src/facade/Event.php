@@ -169,31 +169,7 @@ class Event extends Facade
             ],
         ];
 
-        $url ='/event/participant/list?'.http_build_query($params);
-
-        $response = $this->client->request($url, 'GET');
-
-        if ($response->getStatusCode() !== 200) {
-            return null;
-        }
-
-        $decode = json_decode($response->getBody(), true);
-
-        if (false === isset($decode['data'])) {
-            return null;
-        }
-
-        $result = [];
-
-        foreach ($decode['data'] as $item) {
-
-            $model = new EventParticipant();
-            $model->load($item);
-
-            $result[] = $model;
-        }
-
-        return $result;
+        return $this->participantList($params);
     }
 
     public function changeRole($participantId, $roleId): ?EventParticipant
@@ -217,5 +193,57 @@ class Event extends Facade
         $model->load($decode['data']);
 
         return $model;
+    }
+
+    public function getParticipantByRunetId(int $runetId): ?array
+    {
+        $params = [
+            'limit' => 1,
+            'offset' => 0,
+            'pagination' => [
+                'page' => 1,
+                'perPage' => 1
+            ],
+            'filter' => [
+                'runet_id' => $runetId,
+            ],
+        ];
+
+        $list = $this->participantList($params);
+
+        if (empty($list)) {
+            return null;
+        }
+
+        return $list[0];
+    }
+
+    private function participantList($params): array
+    {
+        $url ='/event/participant/list?'.http_build_query($params);
+
+        $response = $this->client->request($url, 'GET');
+
+        if ($response->getStatusCode() !== 200) {
+            return [];
+        }
+
+        $decode = json_decode($response->getBody(), true);
+
+        if (false === isset($decode['data'])) {
+            return [];
+        }
+
+        $result = [];
+
+        foreach ($decode['data'] as $item) {
+
+            $model = new EventParticipant();
+            $model->load($item);
+
+            $result[] = $model;
+        }
+
+        return $result;
     }
 }

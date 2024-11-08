@@ -129,6 +129,13 @@ $client->event()->products()
 $client->event()->searchParticipant('test@example.com')
 ```
 
+### Получить участника по RunetId
+
+```php
+/** @var \runetid\sdk\models\User|null $user */
+$user = $client->event()->getParticipantByRunetId(123)
+```
+
 ## Товары
 
 #### Получение информации о мероприятии по идентификатору
